@@ -1,0 +1,423 @@
+swagger: '2.0'
+info:
+  title: Home Thermostat Web API
+  description: 'Lists home thermostats and allow getting and setting of each thermostat properties.'
+  version: '1.0'
+schemes:
+- http
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  /thermostat/list:
+    get:
+      tags:
+        - Version
+      summary: 'Get the thermostats in the house.'
+      operationId: listThermostat
+      responses:
+        200:
+          description: 'The list of thermostatus.'
+          schema:
+            $ref: '#/definitions/ThermostatList'
+
+  /thermostat/{id}:
+    get:
+      tags:
+        - Thermostat
+      produces:
+        - application/json
+      summary: 'Get the specified thermostat.'
+      operationId: getThermostat
+      parameters:
+      - name: id
+        in: path
+        description: 'The identifier of the thermostat.'
+        required: true
+        type: string
+      responses:
+        200:
+          description: 'The thermostat object.'
+          schema:
+            $ref: "#/definitions/Thermostat"
+        404:
+          description: 'Requested thermostat does not exist.'
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: 'An unexpected service error occurred.'
+          schema:
+            type: string
+            description: 'The name of the thermostat'
+            
+  /thermostat/{id}/name:
+    get:
+      tags:
+        - Thermostat
+      produces:
+        - application/json
+      summary: 'Get the name of the specified thermostat.'
+      operationId: getThermostatName
+      parameters:
+      - name: id
+        in: path
+        description: 'The identifier of the thermostat.'
+        required: true
+        type: string
+      responses:
+        200:
+          description: 'The thermostat name.'
+          schema:
+            type: string
+        404:
+          description: 'Requested thermostat does not exist.'
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: 'An unexpected service error occurred.'
+          schema:
+            $ref: "#/definitions/Error"
+    put:
+      tags:
+        - Thermostat
+      summary: 'Updates the name of the specified thermostat.'
+      operationId: setThermostatName
+      parameters:
+      -  name: id
+         in: path
+         description: 'The identifier of the thermostat.'
+         required: true
+         type: string
+      -  name: name
+         in: query
+         description: 'The new name of the thermostat.'
+         required: true
+         type: string
+      responses:
+        200:
+          description: The updated thermostat object
+          schema:
+            $ref: '#/definitions/Thermostat'
+        404:
+          description: 'Requested thermostat does not exist.'
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+         description: 'An unexpected service error occurred.'
+         schema:
+            $ref: "#/definitions/Error"
+  /thermostat/{id}/currentTemp:
+    get:
+      tags:
+        - Thermostat
+      produces:
+        - application/json
+      summary: 'Get the current temperature of the specified thermostat.'
+      operationId: getThermostatTemp
+      parameters:
+      - name: id
+        in: path
+        description: 'The identifier of the thermostat.'
+        required: true
+        type: string
+      responses:
+        200:
+          description: 'The current thermostat temperature.'
+          schema:
+            type: number
+            format: double
+        404:
+          description: 'Requested thermostat does not exist.'
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: 'An unexpected service error occurred.'
+          schema:
+            $ref: "#/definitions/Error" 
+  /thermostat/{id}/operationMode:
+    get:
+      tags:
+        - Thermostat
+      produces:
+        - application/json
+      summary: 'Get the operation mode of the specified thermostat.'
+      operationId: getThermostatOperationMode
+      parameters:
+      - name: id
+        in: path
+        description: 'The identifier of the thermostat.'
+        required: true
+        type: string
+      responses:
+        200:
+          description: 'The thermostat operation mode, must be "cool", "heat", or "off".'
+          schema:
+            type: string
+        404:
+          description: 'Requested thermostat does not exist.'
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: 'An unexpected service error occurred.'
+          schema:
+            $ref: "#/definitions/Error"
+    put:
+      tags:
+        - Thermostat
+      summary: 'Updates the operation mode of the specified thermostat.'
+      operationId: setThermostatOperationMode
+      parameters:
+      -  name: id
+         in: path
+         description: 'The identifier of the thermostat.'
+         required: true
+         type: string
+      -  name: mode
+         in: query
+         description: 'The new operation mode of the thermostat, must be "cool", "heat", or "off".'
+         required: true
+         type: string
+      responses:
+        200:
+          description: The updated thermostat object
+          schema:
+            $ref: '#/definitions/Thermostat'
+        404:
+          description: 'Requested thermostat does not exist.'
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+         description: 'An unexpected service error occurred.'
+         schema:
+            $ref: "#/definitions/Error"
+  
+  /thermostat/{id}/coolPoint:
+    get:
+      tags:
+        - Thermostat
+      produces:
+        - application/json
+      summary: 'Get the cool point of the specified thermostat.'
+      operationId: getThermostatCoolPoint
+      parameters:
+      - name: id
+        in: path
+        description: 'The identifier of the thermostat.'
+        required: true
+        type: string
+      responses:
+        200:
+          description: 'The thermostat cool point. Must be a number between 30 - 100.'
+          schema:
+            type: number
+            format: double
+            minimum: 30
+            maximum: 100
+            
+        404:
+          description: 'Requested thermostat does not exist.'
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: 'An unexpected service error occurred.'
+          schema:
+            $ref: "#/definitions/Error"
+    put:
+      tags:
+        - Thermostat
+      summary: 'Updates the cool point of the specified thermostat.'
+      operationId: setThermostatCoolPoint
+      parameters:
+      -  name: id
+         in: path
+         description: 'The identifier of the thermostat.'
+         required: true
+         type: string
+      -  name: name
+         in: query
+         description: 'The new cool point of the thermostat.'
+         required: true
+         type: number
+         format: double
+         minimum: 30
+         maximum: 100
+      responses:
+        200:
+          description: The updated thermostat object
+          schema:
+            $ref: '#/definitions/Thermostat'
+        404:
+          description: 'Requested thermostat does not exist.'
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+         description: 'An unexpected service error occurred.'
+         schema:
+            $ref: "#/definitions/Error"    
+  
+  /thermostat/{id}/heatPoint:
+    get:
+      tags:
+        - Thermostat
+      produces:
+        - application/json
+      summary: 'Get the heat point of the specified thermostat.'
+      operationId: getThermostatHeatPoint
+      parameters:
+      - name: id
+        in: path
+        description: 'The identifier of the thermostat.'
+        required: true
+        type: string
+      responses:
+        200:
+          description: 'The thermostat heat point. Must be a number between 30 - 100.'
+          schema:
+            type: number
+            format: double
+            minimum: 30
+            maximum: 100
+            
+        404:
+          description: 'Requested thermostat does not exist.'
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: 'An unexpected service error occurred.'
+          schema:
+            $ref: "#/definitions/Error"
+    put:
+      tags:
+        - Thermostat
+      summary: 'Updates the heat point of the specified thermostat.'
+      operationId: setThermostatHeatPoint
+      parameters:
+      -  name: id
+         in: path
+         description: 'The identifier of the thermostat.'
+         required: true
+         type: string
+      -  name: name
+         in: query
+         description: 'The new heat point mode of the thermostat.'
+         required: true
+         type: string
+      responses:
+        200:
+          description: The updated thermostat object
+          schema:
+            $ref: '#/definitions/Thermostat'
+        404:
+          description: 'Requested thermostat does not exist.'
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+         description: 'An unexpected service error occurred.'
+         schema:
+            $ref: "#/definitions/Error" 
+  /thermostat/{id}/fanMode:
+    get:
+      tags:
+        - Thermostat
+      produces:
+        - application/json
+      summary: 'Get the fan mode of the specified thermostat.'
+      operationId: getThermostatFanMode
+      parameters:
+      - name: id
+        in: path
+        description: 'The identifier of the thermostat.'
+        required: true
+        type: string
+      responses:
+        200:
+          description: 'The thermostat fan mode, must be "auto" or "off".'
+          schema:
+            type: string
+        404:
+          description: 'Requested thermostat does not exist.'
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: 'An unexpected service error occurred.'
+          schema:
+            $ref: "#/definitions/Error"
+    put:
+      tags:
+        - Thermostat
+      summary: 'Updates the fan mode of the specified thermostat.'
+      operationId: setThermostatFanMode
+      parameters:
+      -  name: id
+         in: path
+         description: 'The identifier of the thermostat.'
+         required: true
+         type: string
+      -  name: mode
+         in: query
+         description: 'The new fan mode of the thermostat. Must be "auto" or "off"'
+         required: true
+         type: string
+      responses:
+        200:
+          description: The updated thermostat object
+          schema:
+            $ref: '#/definitions/Thermostat'
+        404:
+          description: 'Requested thermostat does not exist.'
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+         description: 'An unexpected service error occurred.'
+         schema:
+            $ref: "#/definitions/Error"
+            
+definitions:
+  Error:
+    type: object
+    properties:
+      errorCode:
+        type: string
+      errorDescription:
+        type: string
+  
+  ThermostatList:
+    type: object
+    properties: 
+      thermostatList:
+        type: array
+        items:
+          $ref: '#/definitions/Thermostat'
+  Thermostat:
+    type: object
+    description: 'The thermostat.'
+    properties:
+      identifier:
+        type: string
+        description: 'The identifier for the thermostat.'
+      name:
+        type: string
+        description: 'The name of the thermostat'
+      currentTemp:
+        type: number
+        format: double
+        description: 'The current temperature at the thermostat in farenheit.'
+      operationMode:
+        type: string
+        description: 'The current operation mode. Accepted values are "cool", "heat" and "off"'
+      coolSetPoint:
+        type: number
+        format: double
+        minimum: 30
+        maximum: 100
+        description: 'The current cooling point temperature of the thermostat in farenheit.'
+      heatSetPoint:
+        type: number
+        format: double
+        minimum: 30
+        maximum: 100
+        description: 'The current heating point temperature of the thermostat in farenheit.'
+      fanMode:
+        type: string
+        description: 'The current fan mode. Accepted values are "off", "auto"'
