@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   title: Home Thermostat Web API
-  description: 'Lists home thermostats and allow getting and setting of each thermostat properties.'
+  description: 'Lists home thermostats and allow getting and setting of each thermostat property.'
   version: '1.0'
 schemes:
 - http
@@ -183,6 +183,10 @@ paths:
           description: The updated thermostat object
           schema:
             $ref: '#/definitions/Thermostat'
+        400:
+          description: 'The operation mode could not be set, usually due to an invalid operation mode.'
+          schema:
+            $ref: '#/definitions/Error'
         404:
           description: 'Requested thermostat does not exist.'
           schema:
@@ -234,7 +238,7 @@ paths:
          description: 'The identifier of the thermostat.'
          required: true
          type: string
-      -  name: name
+      -  name: coolPoint
          in: query
          description: 'The new cool point of the thermostat.'
          required: true
@@ -247,6 +251,10 @@ paths:
           description: The updated thermostat object
           schema:
             $ref: '#/definitions/Thermostat'
+        400:
+          description: 'The cool point could not be set, usually due to an temperature point out of range.'
+          schema:
+            $ref: '#/definitions/Error'
         404:
           description: 'Requested thermostat does not exist.'
           schema:
@@ -298,7 +306,7 @@ paths:
          description: 'The identifier of the thermostat.'
          required: true
          type: string
-      -  name: name
+      -  name: heatPoint
          in: query
          description: 'The new heat point mode of the thermostat.'
          required: true
@@ -308,6 +316,10 @@ paths:
           description: The updated thermostat object
           schema:
             $ref: '#/definitions/Thermostat'
+        400:
+          description: 'The heat point could not be set, usually due to the heat point being out of range.'
+          schema:
+            $ref: '#/definitions/Error'
         404:
           description: 'Requested thermostat does not exist.'
           schema:
@@ -364,6 +376,10 @@ paths:
           description: The updated thermostat object
           schema:
             $ref: '#/definitions/Thermostat'
+        400:
+          description: 'The fan mode could not be set, usually due to an invalid fan mode.'
+          schema:
+            $ref: '#/definitions/Error'
         404:
           description: 'Requested thermostat does not exist.'
           schema:

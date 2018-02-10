@@ -1,0 +1,613 @@
+{
+	"info": {
+		"name": "thermostat-test",
+		"_postman_id": "65b6cadc-4578-60c2-f93f-15f609275cb6",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/thermostat/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"thermostat",
+						"list"
+					]
+				},
+				"description": "List the thermostats"
+			},
+			"response": []
+		},
+		{
+			"name": "GetThermostat",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/thermostat/102",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"thermostat",
+						"102"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetThermostat-bad",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/thermostat/bad",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"thermostat",
+						"bad"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetThermostatName",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "067a8abf-8e73-4aac-88ff-7abbba08b0df",
+						"type": "text/javascript",
+						"exec": [
+							"pm.variables.get(\"variable_key\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/thermostat/101/name",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"thermostat",
+						"101",
+						"name"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetThermostatName-404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "067a8abf-8e73-4aac-88ff-7abbba08b0df",
+						"type": "text/javascript",
+						"exec": [
+							"pm.variables.get(\"variable_key\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/thermostat/104/name",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"thermostat",
+						"104",
+						"name"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "SetThermostatName",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/thermostat/101/name?name=upper%20landing",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"thermostat",
+						"101",
+						"name"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "upper%20landing",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetThermostatCurrentTemp",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "067a8abf-8e73-4aac-88ff-7abbba08b0df",
+						"type": "text/javascript",
+						"exec": [
+							"pm.variables.get(\"variable_key\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/thermostat/101/name",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"thermostat",
+						"101",
+						"name"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetThermostatOperationMode",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "067a8abf-8e73-4aac-88ff-7abbba08b0df",
+						"type": "text/javascript",
+						"exec": [
+							"pm.variables.get(\"variable_key\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/thermostat/101/operationMode",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"thermostat",
+						"101",
+						"operationMode"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "SetThermostatOperationMode",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/thermostat/101/operationMode?mode=heat",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"thermostat",
+						"101",
+						"operationMode"
+					],
+					"query": [
+						{
+							"key": "mode",
+							"value": "heat",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "SetThermostatOperationMode-bad",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/thermostat/101/operationMode?mode=bad",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"thermostat",
+						"101",
+						"operationMode"
+					],
+					"query": [
+						{
+							"key": "mode",
+							"value": "bad",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetThermostatCoolPoint",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "067a8abf-8e73-4aac-88ff-7abbba08b0df",
+						"type": "text/javascript",
+						"exec": [
+							"pm.variables.get(\"variable_key\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/thermostat/101/coolPoint",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"thermostat",
+						"101",
+						"coolPoint"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "SetThermostatCoolPoint",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/thermostat/101/coolPoint?coolPoint=35",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"thermostat",
+						"101",
+						"coolPoint"
+					],
+					"query": [
+						{
+							"key": "coolPoint",
+							"value": "35",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "SetThermostatCoolPoint-bad",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/thermostat/101/coolPoint?coolPoint=27",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"thermostat",
+						"101",
+						"coolPoint"
+					],
+					"query": [
+						{
+							"key": "coolPoint",
+							"value": "27",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetThermostatHeatPoint",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "067a8abf-8e73-4aac-88ff-7abbba08b0df",
+						"type": "text/javascript",
+						"exec": [
+							"pm.variables.get(\"variable_key\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/thermostat/101/heatPoint",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"thermostat",
+						"101",
+						"heatPoint"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "SetThermostatHeatPoint",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/thermostat/101/heatPoint?heatPoint=67.5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"thermostat",
+						"101",
+						"heatPoint"
+					],
+					"query": [
+						{
+							"key": "heatPoint",
+							"value": "67.5",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "SetThermostatHeatPoint-bad",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/thermostat/101/heatPoint?heatPoint=120.5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"thermostat",
+						"101",
+						"heatPoint"
+					],
+					"query": [
+						{
+							"key": "heatPoint",
+							"value": "120.5",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetThermostatFanMode",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "067a8abf-8e73-4aac-88ff-7abbba08b0df",
+						"type": "text/javascript",
+						"exec": [
+							"pm.variables.get(\"variable_key\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/thermostat/101/fanMode",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"thermostat",
+						"101",
+						"fanMode"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "SetThermostatFanMode",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/thermostat/101/fanMode?mode=off",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"thermostat",
+						"101",
+						"fanMode"
+					],
+					"query": [
+						{
+							"key": "mode",
+							"value": "off",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "SetThermostatFanMode-bad",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/thermostat/101/fanMode?mode=bad",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"thermostat",
+						"101",
+						"fanMode"
+					],
+					"query": [
+						{
+							"key": "mode",
+							"value": "bad",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/thermostat/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"thermostat",
+						"list"
+					]
+				},
+				"description": "List the thermostats"
+			},
+			"response": []
+		}
+	]
+}
