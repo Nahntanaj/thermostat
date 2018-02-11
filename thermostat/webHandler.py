@@ -4,7 +4,7 @@ Created on Feb 9, 2018
 @author: JStringer
 '''
 from bottle import Bottle, run
-from bottle import get, put, request
+from bottle import get, put, request, error
 import json
 from Thermostat import Thermostat
 from ThermostatError import ThermostatError
@@ -22,8 +22,20 @@ homeThermostats['102'] = Thermostat('102', 'thermostat2', 85, "cool", 75, 65, "a
 #output = output[:-2] + "]"
 #print(output)
 
+@app.error(404)
+def error404(error):
+    return ThermostatError(404, error.body).toJSON()
+
+@app.error(500)
+def error500(error):
+    return ThermostatError(500, error.body).toJSON()
+
 def addThermostat(t: Thermostat):
     homeThermostats[t.id] = t
+    
+@app.get('/thermostat/cause500')
+def cause500():
+    return 1/-1
 
 @app.get('/thermostat/list')
 def listThermostats():

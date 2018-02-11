@@ -588,13 +588,34 @@
 			"response": []
 		},
 		{
-			"name": "list",
+			"name": "Bad URL",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/thermostat/list",
+					"raw": "http://localhost:8080/f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"f"
+					]
+				},
+				"description": "List the thermostats"
+			},
+			"response": []
+		},
+		{
+			"name": "Cause500",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/thermostat/cause500",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -602,7 +623,7 @@
 					"port": "8080",
 					"path": [
 						"thermostat",
-						"list"
+						"cause500"
 					]
 				},
 				"description": "List the thermostats"
